@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'users.apps.UsersConfig',
+    'general.apps.GeneralConfig',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'skill_it.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['C:/Users/Vlada/Documents/GitHub/skill-it/general/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'C:/Users/Vlada/Documents/GitHub/skill-it/general/static'),  # Here you tell django to look for a folder named 'assets'
+]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
