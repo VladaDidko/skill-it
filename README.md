@@ -20,7 +20,7 @@ To run the project print: <br />
  ```python manage.py runserver ```<br />
 This will start development server on localhost.
 
-##Licence
+## Licence
 Copyright (c) Django Software Foundation and individual contributors.
 All rights reserved.
 
