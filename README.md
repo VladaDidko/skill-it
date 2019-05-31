@@ -11,14 +11,24 @@ Also you need to install the following packages: <br />
  ```pip install django-crispy-forms```<br />
  ```pip install Pillow```<br />
 
-
-
 ## Usage
 After cloning or downloading the project open a command prompt and change the directory to the project folder:<br />
  ```cd C:\Users\[name]\skill-it ```<br />
+To apply all the changes print: <br />
+ ```python manage.py migrate ```<br />
 To run the project print: <br />
  ```python manage.py runserver ```<br />
 This will start development server on localhost.
+
+## Running the tests
+
+**TBD**
+
+## Authors
+
+* **Vlada Didko** - [VladaDidko](https://github.com/VladaDidko)
+* **Nazar Hichva** - [naz466](https://github.com/naz466)
+* **Oleh Homilko** - [Oleeeg](https://github.com/Oleeeg)
 
 ## License
 Copyright (c) Django Software Foundation and individual contributors.
