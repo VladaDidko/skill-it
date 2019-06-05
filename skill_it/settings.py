@@ -138,8 +138,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'C:/Users/Vlada/Documents/GitHub/skill-it/general/static'),  # Here you tell django to look for a folder named 'assets'
-    os.path.join(BASE_DIR, 'C:/Users/Vlada/Documents/GitHub/skill-it/users/static')
+    os.path.join(BASE_DIR, './general/static'),  # Here you tell django to look for a folder named 'assets'
+    os.path.join(BASE_DIR, './users/static')
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
