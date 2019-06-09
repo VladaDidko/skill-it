@@ -33,12 +33,14 @@ main-container{
 
 #lab_social_icon_footer {
   padding: 0 0;
-  background-color: #dedede;
+  background-color: #d7d2cc;
   position: fixed;
+  height: 50px;
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #f5f5f5;
+  background: #d7d2cc;
+  opacity: 0.6;
 
 }
 

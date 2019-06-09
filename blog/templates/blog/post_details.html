@@ -1,76 +1,44 @@
-{% extends "general/base.html" %}
-{{% block content %}
-<article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">Oleg</a>
-              <small class="text-muted">June 8, 2019, 8:51 p.m.</small>
+{% extends 'general/base.html' %}
+{% block content %}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-9 col-lg-9">
+            <div class="post">
+                {% if post.published_date %}
+                    <div class="date">
+                        {{post.published_date}}
+                    </div>
+                {% endif %}
+                <img src="{{ post.image.url }}"  alt="image post"/>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.text|linebreaksbr }}</p>
             </div>
-            <h2><a class="article-title" href="#">Es ist gut</a></h2>
-            <p class="article-content">There is gonna be some text here soon</p>   
-            <div class=multi>
-            <div>   
-            <p><img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/27C9/production/_103158101_tha.jpg" width="150" height="150" alt="image post">
+            <hr>
+            <a href="{% url 'add_comment_to_post' pk=post.pk %}"><button class="btn btn-outline-dark">Add comment</button></a>
+            {% for comment in post.comments.all %}
+            {% if user.is_authenticated or comment.approved_comment %}
+            <div class="comment">
+                <div class="date">
+                    {{ comment.created_date }}
+                    {% if not comment.approved_comment %}
+                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+                            <span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                            <span class="glyphicon glyphicon-ok"></span></a>
+                    {% endif %}
+                </div>
+                <div class = "comment-section">
+                    <h6>{{ comment.author }}</h6>
+                    <div class="comment" style="border-left: 4px solid black; background-color: lightgrey;">
+                    <p>{{ comment.text|linebreaks }}</p>
+                </div>
+            </div>
+            </div>
+            {% endif %}
+        {% empty %}
+            <p>No comments yet</p>
         </div>
-        <div>
-            <video width="260" height="150" controls src="https://www.youtube.com/watch?v=s0iDwTWaJVE">
-        </div>
-          </div>
-        </article>
-        <p><a href="#anchor"><button class="btn btn-outline-success">Comment</button></a>
-        	<a href=""><button class="btn btn-outline-danger">Like</button></a>
-        </p>
-        <section id="comments">
-        	<h2>Comments</h2>
-        	<div class="media content-section">
-        		<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
-        		<div class="media-body">
-        			<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
-        			<p>I comment this one just to disagree with this shit!</p>
-        			<hr>
-        			<div class="media">
-        				<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
-        				<div class="media-body">
-        					<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
-        					<p>I comment this one just to disagree with this shit!</p>
-        				</div>
-        			</div>
-        			<hr>
-        			<div class="media">
-        				<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
-        				<div class="media-body">
-        					<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
-        					<p>I comment this one just to disagree with this shit!</p>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="media content-section">
-        		<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
-        		<div class="media-body">
-        			<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
-        			<p>I comment this one just to disagree with this shit!</p>
-        		</div>
-        	</div>
-        	<div class="media content-section">
-        		<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
-        		<div class="media-body">
-        			<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
-        			<p>I comment this one just to disagree with this shit!</p>
-        		</div>
-        	</div>
-        	<form>
-	        	<div class="form-group commentArea" id="anchor">
-	        		<label for="name">Name</label>
-	        		<input type="text" class="form-control" placeholder="Name" id="name" name="name" required>
-	        	</div>
-	        	<div class="form-group commentArea">
-	        		<label for="comment">Your comment:</label>
-	        		<textarea class="form-control" id="comment" name="comment" rows="5" placeholder="Write your comment here..." required></textarea>
-	        	</div>
-	        	<button type="submit" class="btn btn-primary">Submit</button>
-	        	<button type="reset" class="btn btn-danger">Reset</button>
-	        </form>
-        </section>
-
-{% endblock content %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

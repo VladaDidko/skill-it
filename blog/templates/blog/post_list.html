@@ -25,9 +25,9 @@
         </div>
           </div>
         </article>
-        <p><a href=""><button class="btn btn-outline-info">More</button></a>
+        <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-outline-info" >More</button></a>
         <a href=""><button class="btn btn-outline-success">Comment</button></a>
-        	<a href=""><button class="btn btn-outline-danger">Like</button></a>
+        <a href=""><button class="btn btn-outline-danger">Like</button></a>
         </p>
 
     {% endfor %}
