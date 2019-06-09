@@ -12,7 +12,20 @@ main-container{
 }
 .dropdown-item{
 	color: #ffffff;
-  
+}
+
+.container-people{
+  float: left; 
+  padding-top: 15px;
+  width: 70%;
+  background-color:#d7d2cc;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#follow, #unfollow{
+  float: right; 
+  margin-right: 5px
 }
 .nav-item{
 	font-size: 20px;

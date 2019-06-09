@@ -14,7 +14,7 @@
 
   <title>Skill it</title>
 </head>
-<body>
+<body style="background-image: linear-gradient(to right, #d7d2cc 0%, #393d3f 100%);">
   <div container="main-container">
   <!--Navbar -->
   <nav class="navbar navbar-dark bg-dark navbar-expand-xl">
@@ -36,12 +36,27 @@
         </div>
       </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">People</a>
+          <a class="nav-link" href="{% url 'people' %}">People</a>
         </li>
+
+        <form method = "GET" action = "" style="color:white; height: 10px">
+          <div class="active-cyan-4 mb-4">
+            <input class="form-control" type="text" name = "q" placeholder="Search" aria-label="Search" value = "{{ request.GET.q }}" style="height: 37px; margin-top: 5px;margin-left: 30px;">
+          </div>
+        </form>
+
       </ul>
       <div class="navbar-nav">
         {% if user.is_authenticated %}
-          <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class ="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <a class ="dropdown-item" href="#">My Posts</a>
+              <a class ="dropdown-item" href="{% url 'edit_profile'%}">Settings</a>
+            </div>
+          </li>
           <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
         {% else %}
           <a class="nav-item nav-link" href="{% url 'login' %}">Sign in</a>

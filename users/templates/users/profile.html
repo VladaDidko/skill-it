@@ -1,14 +1,13 @@
 {% extends "general/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="card">
+    <div class="card" style="background: transparent;">
       <img class = "rounded-circle"src="{{ user.profile.image.url }}" alt="UserImage" style="width:200px; height: 200px;">
       <h1 style="text-transform: uppercase;">{{ user.username }}</h1>
       <p class="description">{{ user.profile.description }}</p>
       <p>{{ user.profile.city }}</p>
       <p class = "text-secondary">Skills: {{ user.profile.skills }}</p>
       <p class = "text-secondary">Date of birth: {{ user.profile.date_birth|date:"F d, Y"}} </p>
-      <p><button class='btn btn-md btn-success'>Subscribe</button></p>
-      <small class="text-muted"><a href="{% url 'edit_profile'%}">Edit profile</a></small>
+      <p><button class='btn btn-md btn-dark'>Subscribe</button></p>
     </div>
 {% endblock content %}

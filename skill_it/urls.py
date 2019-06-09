@@ -34,6 +34,7 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     path('edit_profile/', user_views.edit_profile, name = 'edit_profile'),
     path('my_posts/', user_views.my_posts, name='my_posts'),
+    path('people/', main_views.users, name='people'),
     path('', include('blog.urls')),
 ]
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'subscribe',
 ]
 
 MIDDLEWARE = [
@@ -147,7 +148,7 @@ STATICFILES_DIRS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT=os.path.join(BASE_DIR, './skill_it/media')
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'

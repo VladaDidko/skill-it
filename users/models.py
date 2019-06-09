@@ -6,10 +6,9 @@ from datetime import datetime
 from skill_it import settings
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
     description = models.CharField(max_length=500)
     date_birth = models.DateField(null=True, blank=True)
     city = models.CharField(max_length=200)
@@ -35,3 +34,11 @@ class Profile(models.Model):
     			return True
     	else: return False
 
+
+
+class Follower(models.Model):
+    follower = models.ForeignKey(User, related_name='following', on_delete=models.DO_NOTHING)
+    following = models.ForeignKey(User, related_name='followers',  on_delete=models.DO_NOTHING)
+    
+    class Meta:
+        unique_together = ('follower', 'following')
