@@ -24,11 +24,6 @@ def home(request):
     context = {
     'categories': Category.objects.all(),
     }
-    query = request.GET.get("q")
-    if query:
-        categories = codes.filter(
-            Q(title__icontains = query) 
-            ).distinct()
 
     return render(request, 'general/home.html', context)
 
@@ -37,6 +32,12 @@ def post_list(request):
         'categories': Category.objects.all(),
         'posts': Post.objects.all()
     }
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(
+            Q(category__icontains = query) 
+            ).distinct()
+        
     return render(request, 'blog/post_list.html', context)
 
 def view(request, slug):
@@ -59,6 +60,7 @@ def add_comment_to_post(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.author = request.user
             comment.save()
             return redirect('post_details', pk=post.pk)
     else:

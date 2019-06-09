@@ -2,11 +2,11 @@
 {% block content %}
   <head>
     <script>
-      $(document).ready(function(e) {
-        $('#follow').click(function(){
+      $(document).ready(function(){
+        $("#follow").click(function(){
           $(this).val("Unfollow");
         });
-      });
+      }); 
     </script>
   </head>
   {%for user in users%}
