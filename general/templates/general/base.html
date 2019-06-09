@@ -8,8 +8,9 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
   <link rel="stylesheet" type="text/css" href="{% static 'general/main.css' %} " />
+  <link rel="stylesheet" type="text/css" href="{% static 'users/main.css' %} "/>
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %} "/>
 
   <title>Skill it</title>
 </head>
@@ -29,9 +30,9 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Sport</a>
-          <a class="dropdown-item" href="#">Languages</a>
-          <a class="dropdown-item" href="#">Music</a>
+          {% for category in categories %}
+          <a class="dropdown-item" href="blog/category/{{category.title}}">{{ category.title }}</a>
+          {% endfor %}
         </div>
       </li>
         <li class="nav-item">
@@ -39,10 +40,10 @@
         </li>
       </ul>
       <div class="navbar-nav">
-        {% if user.is_authenticated%}
+        {% if user.is_authenticated %}
           <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
           <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
-        {% else %}}
+        {% else %}
           <a class="nav-item nav-link" href="{% url 'login' %}">Sign in</a>
           <a class="nav-item nav-link" href="{% url 'register' %}">Sign up</a>
         {% endif %}

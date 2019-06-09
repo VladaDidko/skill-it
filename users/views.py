@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+from blog.models import Post
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -45,3 +47,11 @@ def edit_profile(request):
     }
 
     return render(request, 'users/edit_profile.html', context)
+
+
+@login_required
+def my_posts(request):
+    context = {
+        'posts': Post.objects.all()
+    }
+    return render(request, 'users/my_posts.html')

@@ -1,3 +1,5 @@
+from datetime import timezone
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -14,12 +16,11 @@ class Post(models.Model):
 	text = models.TextField(blank=True)
 	image = models.ImageField(upload_to='post_pics', blank=True)
 	videofile = models.FileField(upload_to='post_vid', blank=True)
-	published_date = models.DateTimeField(blank=True, null=True)
+	published_date = models.DateTimeField(auto_now=True)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 	def publish(self):
-		self.published_date = timezone.now()
 		self.save()
 
 	def __str__(self):

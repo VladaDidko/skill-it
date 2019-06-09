@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from blog.models import Category
 from django.http import HttpResponse
 
 def home(request):
-   return render(request, 'general/home.html')
+    context = {
+        'categories': Category.objects.all()
+    }
+    return render(request, 'general/base.html', context)

@@ -138,7 +138,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'C:/Users/Vlada/Documents/GitHub/skill-it/general/static'),  # Here you tell django to look for a folder named 'assets'
+    os.path.join(BASE_DIR, './general/static'),  # Here you tell django to look for a folder named 'assets'
+    os.path.join(BASE_DIR, './users/static'),
+    os.path.join(BASE_DIR, './blog/static'),
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -153,5 +155,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ['EMAIL_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+EMAIL_HOST_USER = 'nazargichva@gmail.com'
+EMAIL_HOST_PASSWORD = 'pass'

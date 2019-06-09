@@ -1,0 +1,76 @@
+{% extends "general/base.html" %}
+{{% block content %}
+<article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">Oleg</a>
+              <small class="text-muted">June 8, 2019, 8:51 p.m.</small>
+            </div>
+            <h2><a class="article-title" href="#">Es ist gut</a></h2>
+            <p class="article-content">There is gonna be some text here soon</p>   
+            <div class=multi>
+            <div>   
+            <p><img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/27C9/production/_103158101_tha.jpg" width="150" height="150" alt="image post">
+        </div>
+        <div>
+            <video width="260" height="150" controls src="https://www.youtube.com/watch?v=s0iDwTWaJVE">
+        </div>
+          </div>
+        </article>
+        <p><a href="#anchor"><button class="btn btn-outline-success">Comment</button></a>
+        	<a href=""><button class="btn btn-outline-danger">Like</button></a>
+        </p>
+        <section id="comments">
+        	<h2>Comments</h2>
+        	<div class="media content-section">
+        		<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
+        		<div class="media-body">
+        			<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
+        			<p>I comment this one just to disagree with this shit!</p>
+        			<hr>
+        			<div class="media">
+        				<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
+        				<div class="media-body">
+        					<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
+        					<p>I comment this one just to disagree with this shit!</p>
+        				</div>
+        			</div>
+        			<hr>
+        			<div class="media">
+        				<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
+        				<div class="media-body">
+        					<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
+        					<p>I comment this one just to disagree with this shit!</p>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="media content-section">
+        		<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
+        		<div class="media-body">
+        			<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
+        			<p>I comment this one just to disagree with this shit!</p>
+        		</div>
+        	</div>
+        	<div class="media content-section">
+        		<img src="https://placehold.it/64x64" alt="media object image" class="user-comment-pict">
+        		<div class="media-body">
+        			<p><a href="">James</a> (posted on June 8, 2019, 8:51 p.m.)</p>
+        			<p>I comment this one just to disagree with this shit!</p>
+        		</div>
+        	</div>
+        	<form>
+	        	<div class="form-group commentArea" id="anchor">
+	        		<label for="name">Name</label>
+	        		<input type="text" class="form-control" placeholder="Name" id="name" name="name" required>
+	        	</div>
+	        	<div class="form-group commentArea">
+	        		<label for="comment">Your comment:</label>
+	        		<textarea class="form-control" id="comment" name="comment" rows="5" placeholder="Write your comment here..." required></textarea>
+	        	</div>
+	        	<button type="submit" class="btn btn-primary">Submit</button>
+	        	<button type="reset" class="btn btn-danger">Reset</button>
+	        </form>
+        </section>
+
+{% endblock content %}
