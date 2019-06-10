@@ -13,7 +13,6 @@ class Profile(models.Model):
     date_birth = models.DateField(null=True, blank=True)
     city = models.CharField(max_length=200)
 
-    
     GENDER_CHOICES = (('M', 'Male'),('F', 'Female'),)
     	
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='Ч')
