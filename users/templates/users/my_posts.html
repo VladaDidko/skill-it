@@ -1,0 +1,88 @@
+{% extends "general/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-container">
+    <div class="main-header">
+        <h1>My Posts</h1>
+    </div>
+
+    <div class="row">
+        <div class="add-post-container">
+            <div class="add-post">
+                <input type="text" class="form-control new-title" placeholder="Enter Title">
+                <div class="choose-category">
+                    <h6 class="category-title">Category</h6>
+                    <select class="all-category">
+                        <option value="sport">Sport</option>
+                        <option value="music">Music</option>
+                        <option value="travel">Travel</option>
+                    </select>
+                </div>
+                <textarea class="form-control" rows="5" maxlength="1000" placeholder="Post"></textarea>
+                <input type="file" name="photo" accept=".png, .jpg, jpeg" multiple />
+                <div class="btn-send">Send</div>
+            </div>
+
+        <!--<div class="col-md-6 col-xs-12" id="form">-->
+            <!--<div class="col-xs-10 full-width">-->
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-heading">-->
+                        <!--<span class="nickname"></span>-->
+                    <!--</div>-->
+                    <!--<div class="panel-heading">-->
+                        <!--<input type="text" class="form-control location-name" placeholder="Enter location name">-->
+                        <!--<span id="helpLocationName" class="help-block">Please write location name</span>-->
+                        <!--<br>-->
+                        <!--<input type="text" class="form-control location" placeholder="Enter location coordinates">-->
+                    <!--</div>-->
+                    <!--<div class="panel-body">-->
+                        <!--<textarea class="form-control" rows="5" id="comment" maxlength="400"></textarea>-->
+                        <!--<form enctype="multipart/form-data">-->
+                            <!--<input id="img-1" type="file" name="photo" accept=".png, .jpg, jpeg" multiple />-->
+                            <!--<input id="img-2" type="file" name="photo" accept=".png, .jpg, jpeg" multiple />-->
+                            <!--<span class="btn btn-send">-->
+                                <!--Send <span class="glyphicon glyphicon-send"></span>-->
+                            <!--</span>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one-post-container">
+            <div class="one-post">
+                <h5 class="name">mrk13</h5>
+                <h6 class="time">10.06.2019 15:57</h6>
+                <h2 class="title">Title</h2>
+                <h6 class="category">Sport</h6>
+                <p class="post">Hello. Sea weather flkd asf a aldf;;'a af af a fadf
+Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+Use our spacing and flex utility classes for controlling spacing and alignment within navbars.
+Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+Navbars are hidden by default when printing. Force them to be printed by adding .d-print to the .navbar. See the display utility class.
+Ensure accessibility by using a element or, if using a more generic element such as a , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+Read on for an example and list of supported sub-components.</p>
+            </div>
+        </div>
+
+        <div class="one-post-container">
+            <div class="one-post">
+                <h5 class="name">mrk13</h5>
+                <h6 class="time">10.06.2019 15:57</h6>
+                <h2 class="title">Title</h2>
+                <h6 class="category">Sport</h6>
+                <p class="post">Hello. Sea weather flkd asf a aldf;;'a af af a fadf
+Navbars and their contents are fluid by default. Use optional containers to limit their horizontal width.
+Use our spacing and flex utility classes for controlling spacing and alignment within navbars.
+Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+Navbars are hidden by default when printing. Force them to be printed by adding .d-print to the .navbar. See the display utility class.
+Ensure accessibility by using a element or, if using a more generic element such as a , add a role="navigation" to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+Read on for an example and list of supported sub-components.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
