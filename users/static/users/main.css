@@ -90,8 +90,6 @@
 .post{
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
-    max-height: 150px;
-    overflow-y: auto;
 }
 
 .category {
