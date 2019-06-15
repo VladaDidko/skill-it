@@ -4,9 +4,6 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 
-import PIL
-from PIL import Image
-
 # Create your models here.
 class Category(models.Model):
 	title = models.CharField(max_length=200)
@@ -37,7 +34,6 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE, max_length=200)
-    date_commented = models.DateTimeField(auto_now=True)
     text = models.TextField()
     approved_comment = models.BooleanField(default=False)
 
@@ -47,4 +43,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
-

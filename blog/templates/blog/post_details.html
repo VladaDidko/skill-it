@@ -6,10 +6,10 @@
             <div class="post">
                 {% if post.published_date %}
                     <div class="date">
-                        <small>{{post.published_date}}<
+                        {{post.published_date}}
                     </div>
                 {% endif %}
-                <img src="{{ post.image.url }}" width="500" height="50%" alt="image post"/>
+                <img src="{{ post.image.url }}"  alt="image post"/>
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.text|linebreaksbr }}</p>
             </div>
@@ -28,10 +28,9 @@
                     {% endif %}
                 </div>
                 <div class = "comment-section">
-                    <h6 style="display: inline;">{{ comment.author }}</h6>
-                    <small style="display: inline; margin-left: 10px;"> {{ comment.date_commented }}</small>
+                    <h6>{{ comment.author }}</h6>
                     <div class="comment" style="border-left: 4px solid black; background-color: lightgrey;">
-                    <p>{{ comment.text }}</p>
+                    <p>{{ comment.text|linebreaks }}</p>
                 </div>
             </div>
             </div>
