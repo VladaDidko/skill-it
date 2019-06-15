@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'crispy_forms',
+    'responsive_images',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
     'general.apps.GeneralConfig',
