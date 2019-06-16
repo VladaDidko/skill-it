@@ -55,6 +55,18 @@ def post_list_new(request):
             ).distinct()
     return render(request, 'blog/post_list.html', context)
 
+def post_list_popular(request):
+    context = {
+        'categories': Category.objects.all(),
+        'posts': Post.objects.all().order_by('-likes')
+    }
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(
+            Q(category__icontains = query) 
+            ).distinct()
+    return render(request, 'blog/post_list.html', context)
+
 
 def post_list_recommended(request):
     current_user = request.user
