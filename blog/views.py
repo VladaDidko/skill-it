@@ -52,6 +52,10 @@ def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_details.html', {'post': post})
 
+def mypost_detail(request,pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/mypost_detail.html', {'post': post})
+
 
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)

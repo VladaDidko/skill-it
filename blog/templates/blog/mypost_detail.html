@@ -1,0 +1,21 @@
+{% extends 'general/base.html' %}
+{% block content %}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-9 col-lg-9">
+            <div class="post">
+                {% if post.published_date %}
+                    <div class="date">
+                        {{post.published_date}}
+                    </div>
+                {% endif %}
+                {% if post.image %}
+                <img src="{{ post.image.url }}"  alt="image post"/>
+                {% endif %}
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
