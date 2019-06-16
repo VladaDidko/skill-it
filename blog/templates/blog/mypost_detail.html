@@ -3,16 +3,20 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-md-9 col-lg-9">
-            <div class="post">
+            <div class="post-container">
                 {% if post.published_date %}
-                    <div class="date">
-                        {{post.published_date}}
-                    </div>
-                {% endif %}
-                {% if post.image %}
-                <img src="{{ post.image.url }}"  alt="image post"/>
+                    <small class="text-muted">{{post.published_date}}</small>
                 {% endif %}
                 <h2>{{ post.title }}</h2>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}"  alt="image post" style="max-width: 600px;/>
+                {% endif %}
+                {% if post.videofile %}
+                    <video width="720" height="480" controls>
+                        <source src="{{ post.videofile.url }}" type="video/mp4">
+                    </video>
+
+                {% endif %}
                 <p>{{ post.text|linebreaksbr }}</p>
             </div>
         </div>

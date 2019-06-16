@@ -1,7 +1,6 @@
 {% extends "general/base.html" %}
 {% load static %}
 {% block content %}
-<body>
 {% for post in posts %}
     <article class="media content-section" style="position: relative;">
         <div class="media-body">
@@ -10,26 +9,25 @@
                 <small class="text-muted">{{ post.published_date }}</small>
                 <small style="float: right;">Category: {{post.category}}</small>
             </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <h2><a class="article-title" href="{% url 'post_details' pk=post.pk %}">{{ post.title }}</a></h2>
             {% if post.text %}
                 <p class="article-content">{{ post.text }}</p>
             {% endif %}       
             <div>   
             {% if post.image %}
-                <p><img src="{{ post.image.url }}" width="150" height="150" alt="image post">
+                <p><img src="{{ post.image.url }}" width="500px" height="70%" alt="image post"></p>
             {% endif %}
             </div>
             <div>
             {% if post.videofile %}
-                <video width="260" height="150" controls src="{{ post.videofile.url }}">
+                <video width="260" height="150" controls src="{{ post.videofile.url }}"></video>
             {% endif %}
             </div>
         </div>
-
     </article>
+
     <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-outline-dark" >Read more</button></a>
     <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-outline-dark" >Comment</button></a>
     
 {% endfor %}
-</body>
 {% endblock content %}

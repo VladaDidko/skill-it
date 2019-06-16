@@ -4,11 +4,17 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-md-9 col-lg-9">
-            <div class="post">
+            <div class="post-container">
                 {% if post.published_date %}
                     <small class="text-muted">{{post.published_date}}</small>
                 {% endif %}
                 <h2>{{ post.title }}</h2>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}"  alt="image post" style="max-width:600px;"/>
+                {% endif %}
+                {% if p.videofile %}
+                    <video width="260" height="150" controls src="{{ p.videofile.url }}">
+                {% endif %}
                 <p>{{ post.text|linebreaksbr }}</p>
             </div>
             <hr>
@@ -30,7 +36,7 @@
             {% if user.is_authenticated or comment.approved_comment %}
             <div class="comment">
                 <div class="date">
-                    {{ comment.created_date }}
+                    {{ comment.date_commented }}
                     {% if not comment.approved_comment %}
                         <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
                             <span class="glyphicon glyphicon-remove"></span></a>
@@ -41,14 +47,13 @@
                 <div class = "comment-section">
                     <h6>{{ comment.author }}</h6>
                     <div class="comment" style="border-left: 4px solid black; background-color: lightgrey;">
-                    <p>{{ comment.text|linebreaks }}</p>
+                        <p>{{ comment.text|linebreaks }}</p>
+                    </div>
                 </div>
             </div>
-            </div>
-
             {% endif %}
-        {% empty %}
-            <p>No comments yet</p>
+            {% empty %}
+                <p>No comments yet</p>
         </div>
     </div>
 </div>
