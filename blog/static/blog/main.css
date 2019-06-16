@@ -80,3 +80,21 @@ a.article-title:hover {
 .commentArea {
   width: 75%;
 }
+
+.volumes {
+  width: 30%;
+  background-color: white;
+  border-radius: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+.volumes a {
+  margin-left: 25px;
+  font-size: 22px;
+  color: black;
+}
+
+.volumes a:hover{
+  color: #5B42FF;
+  font-weight: bold;
+}

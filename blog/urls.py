@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path('blog/posts', views.post_list, name='post_list'),
+    path('blog/posts-new', views.post_list_new, name='post_list_new'),
+    path('blog/posts-recommended', views.post_list_recommended, name='post_list_recommended'),
     path('blog/category/<slug:slug>/', views.view, name='category_list'),
     path('blog/category/post/<int:pk>/', views.post_details, name='post_details'),
     path('post/category/post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),

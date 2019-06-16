@@ -2,6 +2,12 @@
 {% load static %}
 {% block content %}
 <body>
+	<div class="volumes">
+		<a href="{% url 'post_list' %}">All</a>
+		<a href="">Popular</a>
+		<a href="{% url 'post_list_new' %}">New</a>
+		<a href="{% url 'post_list_recommended' %}">Recommended</a>
+	</div> 
 {% for post in posts %}
     <article class="media content-section" style="position: relative;">
         <div class="media-body">
