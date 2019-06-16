@@ -15,7 +15,7 @@ class Category(models.Model):
 class Post(models.Model):
 	title = models.CharField(max_length=200)
 	text = models.TextField(blank=True)
-	image = models.ImageField(upload_to='post_pics', blank=True)
+	image = models.ImageField(upload_to='profile_pics', blank=True)
 	videofile = models.FileField(upload_to='post_vid', blank=True)
 	published_date = models.DateTimeField(auto_now=True)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)

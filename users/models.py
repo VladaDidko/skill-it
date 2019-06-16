@@ -9,14 +9,14 @@ from skill_it import settings
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, null=True)
     date_birth = models.DateField(null=True, blank=True)
-    city = models.CharField(max_length=200)
+    city = models.CharField(max_length=200, null=True)
 
     GENDER_CHOICES = (('M', 'Male'),('F', 'Female'),)
     	
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='Ч')
-    skills = models.CharField(max_length=300)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='Ч', null=True)
+    skills = models.CharField(max_length=300, null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
