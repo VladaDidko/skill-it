@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Comment
+from .models import Post, Comment, Preferance
 from .forms import CommentForm, PostForm
 from .models import Category
 from django.views import generic
@@ -83,3 +83,61 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_details', pk=comment.post.pk)
 
+@login_required
+def postpreference(request, pk, id):
+    if request.method == "POST":
+        post= get_object_or_404(Post, pk=pk)
+        obj=''
+        valueobj=''
+        try:
+            obj= Preferance.objects.get(user=request.user, post=post)
+            valueobj= obj.value #value of id
+            valueobj= int(valueobj)
+            id= int(id)
+            if valueobj != id:
+                obj.delete()
+                upref= Preferance()
+                upref.user= request.user
+                upref.post= post
+                upref.value= id
+                if id == 1 and valueobj != 1:
+                    post.likes += 1
+                    post.dislikes -=1
+                elif id == 2 and valueobj != 2:
+                    post.dislikes += 1
+                    post.likes -= 1
+                upref.save()
+                post.save()
+                context= {'post': post, 'pk': pk}
+
+                return render (request, 'blog/post_details.html', context)
+            elif valueobj == id:
+                obj.delete()
+                if id == 1:
+                    post.likes -= 1
+                elif id == 2:
+                    post.dislikes -= 1
+                post.save()
+                context= {'post': post, 'pk': pk}
+
+                return render (request, 'blog/post_details.html', context)
+
+        except Preferance.DoesNotExist:
+            upref= Preferance()
+            upref.user= request.user
+            upref.post= post
+            upref.value= id
+            id=int(id)
+            if id == 1:
+                post.likes += 1
+            elif id == 2:
+                post.dislikes +=1
+            upref.save()
+            post.save()
+            context= {'post': post,'pk': pk}
+            return render (request, 'blog/post_details.html', context)
+
+        else:
+            post= get_object_or_404(Post, pk=pk)
+            context= {'post': post, 'pk': pk}
+            return render (request, 'blog/post_details.html', context)
