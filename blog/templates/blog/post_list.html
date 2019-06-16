@@ -1,11 +1,11 @@
 {% extends "general/base.html" %}
 {% load static %}
 {% block content %}
-	<div class="volumes" style="margin-top:20px;">
-		<a href="{% url 'post_list' %}"><button class="btn-lg btn-light" style="width:140px;">All</button></a>
-		<a href="{% url 'post_list_popular' %}"><button class="btn-lg btn-dark" style="width:140px;">Popular</button></a>
-		<a href="{% url 'post_list_new' %}"><button class="btn-lg btn-light" style="width:140px;">New</button></a>
-		<a href="{% url 'post_list_recommended' %}"><button class="btn-lg btn-dark">Recommended</button></a>
+	<div class="volumes">
+		<a href="{% url 'post_list' %}">All</a>
+		<a href="{% url 'post_list_popular' %}">Popular</a>
+		<a href="{% url 'post_list_new' %}">New</a>
+		<a href="{% url 'post_list_recommended' %}">Recommended</a>
 	</div> 
 {% for post in posts %}
     <article class="media content-section" style="position: relative;">

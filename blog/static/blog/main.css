@@ -81,13 +81,6 @@ a.article-title:hover {
   width: 75%;
 }
 
-.volumes {
-  width: 30%;
-  background-color: white;
-  border-radius: 20px;
-  margin: 10px 0px 10px 0px;
-}
-
 .volumes a {
   margin-left: 25px;
   font-size: 22px;
