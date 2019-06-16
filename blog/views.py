@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Preferance
 from .forms import CommentForm, PostForm
 from .models import Category
+import random
+from users.models import Profile
+from django.contrib.auth.models import User
 from django.views import generic
 from django.views.generic import ListView, View
 from django.db.models import Q
@@ -40,11 +43,80 @@ def post_list(request):
         
     return render(request, 'blog/post_list.html', context)
 
+def post_list_new(request):
+    context = {
+        'categories': Category.objects.all(),
+        'posts': Post.objects.all().order_by('-published_date')
+    }
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(
+            Q(category__icontains = query) 
+            ).distinct()
+    return render(request, 'blog/post_list.html', context)
+
+def post_list_popular(request):
+    context = {
+        'categories': Category.objects.all(),
+        'posts': Post.objects.all().order_by('-likes')
+    }
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(
+            Q(category__icontains = query) 
+            ).distinct()
+    return render(request, 'blog/post_list.html', context)
+
+
+def post_list_recommended(request):
+    current_user = request.user
+    obj = Profile.objects.get(user__in=User.objects.filter(id=current_user.id))
+    skills = obj.skills.split(',')
+    for i, x in enumerate(skills):
+        skills[i] = x.replace(' ', '')
+        skills[i] = skills[i].title()
+
+    empty = True
+
+
+    AllCategories = Category.objects.all();
+    for x in AllCategories:
+        for y in skills:
+            if x.title == y:
+                empty = False    
+
+    if empty == True:
+        context = {
+        'categories': Category.objects.all(),
+        'posts': Post.objects.all()
+        }
+    else:
+        category = random.randint(0,len(skills)-1)
+        context = {
+        'categories': Category.objects.all(),
+        'posts': Post.objects.all().filter(category__in=Category.objects.filter(title=skills[category]))
+        }
+
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(
+            Q(category__icontains = query) 
+            ).distinct()
+    return render(request, 'blog/post_list.html', context)
+
 def view(request, slug):
     context = Post.objects.filter(category__in=Category.objects.filter(title=slug))
     context_dict = {
          'posts': context
     }
+    return render(request, 'blog/post_list.html', context_dict)
+
+def sortedByDateCategory(request, slug):
+    context = Post.objects.filter(category__in=Category.objects.filter(title=slug))
+    context_dict = {
+         'posts': context
+    }
+    context_dict.order_by('published_date')
     return render(request, 'blog/post_list.html', context_dict)
 
 
