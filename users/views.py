@@ -4,6 +4,9 @@ from blog.models import Post
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 # Create your views here.
 def register(request):
@@ -51,7 +54,21 @@ def edit_profile(request):
 
 @login_required
 def my_posts(request):
+    user=request.user
+    myposts = Post.objects.filter(author=request.user)
     context = {
-        'posts': Post.objects.all()
+        'myposts':myposts,
     }
-    return render(request, 'users/my_posts.html')
+    return render(request, 'users/my_posts.html', context)
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'text', 'category', 'image', 'videofile']
+
+    def get_success_url(self):
+            return reverse('mypost_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

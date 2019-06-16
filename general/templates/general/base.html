@@ -33,7 +33,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           {% for category in categories %}
-            <a class ="dropdown-item" href="blog/category/{{category.title}}" value={{category.id}}>{{ category.title }}</a>
+            <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{category.id}}>{{ category.title }}</a>
           {% endfor %}
         </div>
       </li>
@@ -51,11 +51,11 @@
       <div class="navbar-nav">
         {% if user.is_authenticated %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfileLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class ="dropdown-item" href="{% url 'profile' %}">Profile</a>
-              <a class ="dropdown-item" href="#">My Posts</a>
+              <a class ="dropdown-item" href="{% url 'my_posts' %}">My Posts</a>
               <a class ="dropdown-item" href="{% url 'edit_profile'%}">Settings</a>
             </div>
           </li>
@@ -88,23 +88,17 @@
   </main>
 </div>
 <!-- Footer -->
-<section id="lab_social_icon_footer">
-<!-- Include Font Awesome Stylesheet in Header -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-        <div class="text-center center-block">
-                <a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
-              <a href="https://twitter.com/bootsnipp"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
-              <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
-              <a href="mailto:#"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
-    </div>
-</div>
-</section>
+<div class="addthis_inline_share_toolbox" style="padding: 0 0; position: fixed;right: 0;bottom: 0;"></div>
+            
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cd02387b095931a"></script>
+
 
 </body>
 </html>

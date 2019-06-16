@@ -1,0 +1,42 @@
+{% extends "general/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <h2>MY POSTS</h2>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <a href="{% url 'post-create' %}"><button class="btn btn-lg btn-dark">Add new post</button></a>
+        </div>
+    </div>
+</div>
+{% for p in myposts %}
+    <article class="media content-section" style="position: relative;">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small class="text-muted">{{ p.published_date }}</small>
+                <small style="float: right;">Category: {{p.category}}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'mypost_detail' pk=p.pk %}">{{ p.title }}</a></h2>
+            {% if p.text %}
+                <p class="article-content">{{ p.text }}</p>
+            {% endif %}       
+            <div>   
+            {% if p.image %}
+                <p><img src="{{ p.image.url }}" width="150" height="150" alt="image post">
+            {% endif %}
+            </div>
+            <div>
+            {% if p.videofile %}
+                <video width="260" height="150" controls src="{{ p.videofile.url }}">
+            {% endif %}
+            </div>
+        </div>
+        <div class="button-panel" style="position: absolute; bottom: 0; right: 0;">
+            <a><img src="{% static 'blog/like.png' %}" style="width: 36px;height: 36px;"/></a>
+        </div>
+
+    </article>
+{% endfor %}
+{% endblock content %}

@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from general import views as main_views
 from users import views as user_views
+from users.views import PostCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +35,7 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     path('edit_profile/', user_views.edit_profile, name = 'edit_profile'),
     path('my_posts/', user_views.my_posts, name='my_posts'),
+    path('my_posts/new', PostCreateView.as_view(), name='post-create'),
     path('people/', main_views.users, name='people'),
     path('', include('blog.urls')),
 ]
