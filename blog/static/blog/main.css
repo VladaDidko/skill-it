@@ -3,7 +3,7 @@ body {
 }
 
 .container-fluid{
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 
@@ -21,7 +21,7 @@ body {
 }
 
 a {
-	color: #ffffff;
+	color: #6610f2;;
 }
 
 a.article-title:hover {
@@ -93,7 +93,6 @@ a.article-title:hover {
 .volumes a {
   margin-left: 25px;
   font-size: 22px;
-  color:white;
 }
 
 .volumes a:hover{
