@@ -1,24 +1,21 @@
-body {
+body, .main-container {
 	width:100%;
 	height: 100%;
-
-}
-main-container{
-	width: 100%;
-	height: 100%;
-}
-.navbar-nav > li > .dropdown-menu { 
-	background-color: #212529; 
 }
 .dropdown-item{
-	color: #ffffff;
+    background-color: white;
 }
 
+.navbar-nav > li > .dropdown-menu { 
+  background-color: white; 
+}
+
+
 .container-people{
-  float: left; 
-  padding-top: 15px;
+  float:left; 
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 70%;
-  background-color:#d7d2cc;
   margin-bottom: 10px;
   margin-top: 10px;
 }
@@ -27,36 +24,32 @@ main-container{
   float: right; 
   margin-right: 5px
 }
-.nav-item{
-	font-size: 20px;
-}
-
-.addthis_inline_share_toolbox {
-  padding: 0 0;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #a6a6a6;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: @w;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-.main-container {
-   width: 100%;
-}
 
 .main-header {
     text-align: center;
+}
+
+.active-pink-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #f48fb1;
+  box-shadow: 0 0 0 1px #f48fb1;
+}
+.active-pink-3 input[type=text] {
+  border: 1px solid #f48fb1;
+  box-shadow: 0 0 0 1px #f48fb1;
+}
+.active-purple-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #ce93d8;
+  box-shadow: 0 0 0 1px #ce93d8;
+}
+.active-purple-3 input[type=text] {
+  border: 1px solid #ce93d8;
+  box-shadow: 0 0 0 1px #ce93d8;
+}
+.active-cyan-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #4dd0e1;
+  box-shadow: 0 0 0 1px #4dd0e1;
+}
+.active-cyan-3 input[type=text] {
+  border: 1px solid #4dd0e1;
+  box-shadow: 0 0 0 1px #4dd0e1;
 }

@@ -31,10 +31,10 @@
                 </form>
             </div>
 
-            <a href="{% url 'add_comment_to_post' pk=post.pk %}"><button class="btn btn-outline-dark">Add comment</button></a>
+            <a href="{% url 'add_comment_to_post' pk=post.pk %}"><button class="btn btn-outline btn-light btn-lg" style="border: 2px solid #DED3F6;">Add comment</button></a>
             {% for comment in post.comments.all %}
             {% if user.is_authenticated or comment.approved_comment %}
-            <div class="comment">
+            <div class="comment" style="margin-top:15px;">
                 <div class="date">
                     {{ comment.date_commented }}
                     {% if not comment.approved_comment %}
@@ -46,7 +46,7 @@
                 </div>
                 <div class = "comment-section">
                     <h6>{{ comment.author }}</h6>
-                    <div class="comment" style="border-left: 4px solid black; background-color: lightgrey;">
+                    <div class="comment" style="border-left: 4px solid black; background-color: #ffffff;">
                         <p>{{ comment.text|linebreaks }}</p>
                     </div>
                 </div>

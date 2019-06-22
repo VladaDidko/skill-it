@@ -2,6 +2,10 @@ body {
 	position:relative;
 }
 
+.container-fluid{
+  margin-top: 20px;
+}
+
 
 .content-section {
   background: #ffffff;
@@ -17,7 +21,7 @@ body {
 }
 
 a {
-	color: #5B42FF;
+	color: #ffffff;
 }
 
 a.article-title:hover {
@@ -81,10 +85,15 @@ a.article-title:hover {
   width: 75%;
 }
 
+.volumes {
+  background-color: white;
+  margin: 10px 0px 10px 0px;
+}
+
 .volumes a {
   margin-left: 25px;
   font-size: 22px;
-  color: black;
+  color:white;
 }
 
 .volumes a:hover{

@@ -11,7 +11,7 @@
   </head>
   {%for user in users%}
     {% if request.user != user %}
-      <div class="container-people">
+      <div class="container-people" style="background-color:white">
         <div class="row">
           <div class="col-md-4 col-lg-4">
             <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="UserImage" style="width:70px; height: 70px;">
@@ -21,9 +21,9 @@
           </div>
           <div class = "col-md-5 col-lg-5">
             {% if request.user.follower %}
-              <button class='btn btn-lg btn-dark unfollow' id="unfollow" type="submit">Unfollow</button>
+              <button class='btn btn-lg btn-light unfollow' style="border: 2px solid #DED3F6;"id="unfollow" type="submit">Unfollow</button>
             {% else %}
-              <button class='btn btn-lg btn-dark follow' id="follow" type="submit">Follow</button>
+              <button class='btn btn-lg btn-light follow' id="follow" type="submit">Follow</button>
             {% endif %}
           </div>
         </div>

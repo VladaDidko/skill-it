@@ -140,9 +140,9 @@ STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, './general/static'),  # Here you tell django to look for a folder named 'assets'
-    os.path.join(BASE_DIR, './users/static'),
-    os.path.join(BASE_DIR, './blog/static'),
+    os.path.join(BASE_DIR, 'skill-it/general/'),  # Here you tell django to look for a folder named 'assets'
+    os.path.join(BASE_DIR, 'skill-it/users/'),
+    os.path.join(BASE_DIR, 'skill-it/blog/'),
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

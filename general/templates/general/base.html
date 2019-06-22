@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=B612+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-latest.js"></script>
@@ -16,53 +18,53 @@
 
   <title>Skill it</title>
 </head>
-<body style="background-image: linear-gradient(to right, #d7d2cc 0%, #393d3f 100%);">
+<body style="background-color:#DED3F6; background-image: url('general/get.png')>
   <div container="main-container">
   <!--Navbar -->
-  <nav class="navbar navbar-dark bg-dark navbar-expand-xl">
-    <a class="navbar-brand" href="{% url 'home' %}">Skill it!</a>
+  <nav class="navbar navbar-expand-xl" style="height: 80px; background-color: #DED3F6; margin-top: 20px;">
+    <a class="navbar-brand" href="{% url 'home' %}" style="font-family: 'Indie Flower', cursive; font-size: 36px;">
+      <img id="logo" src="{% static 'general/logo.png' %}" style="width:80px;"/>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          {% for category in categories %}
-            <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
-          {% endfor %}
-        </div>
-      </li>
-        <li class="nav-item">
+        <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
+            {% for category in categories %}
+              <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
+            {% endfor %}
+          </div>
+        </li>
+        <li class="nav-item" style="font-family: 'B612 Mono', monospace; font-size: 28px;color:white;">
           <a class="nav-link" href="{% url 'people' %}">People</a>
         </li>
-
-        <form method = "GET" action = "" style="color:white; height: 10px">
-          <div class="active-cyan-4 mb-4">
-            <input class="form-control" type="text" name = "q" placeholder="Search" aria-label="Search" value = "{{ request.GET.q }}" style="height: 37px; margin-top: 5px;margin-left: 30px;">
+        <li class="nav-item">
+          <div class="active-purple-3 active-purple-4 mb-4" style="margin-top: 10px; margin-left:10px; width: 260px;">
+            <form method = "GET">
+              <input class="form-control" type="text" name = "q" placeholder="Search" aria-label="Search" value = "{{ request.GET.q }}">
+            </form>
           </div>
-        </form>
+        </li>
 
       </ul>
       <div class="navbar-nav">
         {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfileLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class ="dropdown-item" href="{% url 'profile' %}">Profile</a>
-              <a class ="dropdown-item" href="{% url 'my_posts' %}">My Posts</a>
-              <a class ="dropdown-item" href="{% url 'edit_profile'%}">Settings</a>
+          <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
+              <a class ="dropdown-item" href="{% url 'profile' %}" style="font-family: 'B612 Mono', monospace;">Profile</a>
+              <a class ="dropdown-item" href="{% url 'my_posts' %}" style="font-family: 'B612 Mono', monospace;">My Posts</a>
+              <a class ="dropdown-item" href="{% url 'edit_profile'%}" style="font-family: 'B612 Mono', monospace;">Settings</a>
             </div>
           </li>
-          <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
+          <a class="nav-item nav-link" href="{% url 'logout' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Log out</a>
         {% else %}
-          <a class="nav-item nav-link" href="{% url 'login' %}">Sign in</a>
-          <a class="nav-item nav-link" href="{% url 'register' %}">Sign up</a>
+          <a class="nav-item nav-link" href="{% url 'login' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px; margin-right: 10px;">Log in</a>
+          <a class="nav-item nav-link" href="{% url 'register' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Sign up</a>
         {% endif %}
       </div>
     </div>
@@ -86,7 +88,6 @@
     </div>
   </main>
 <!-- Footer -->
-<div class="addthis_inline_share_toolbox" style="padding: 0 0; position: fixed;right: 0;bottom: 0;"></div>
             
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -95,7 +96,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- Go to www.addthis.com/dashboard to customize your tools -->
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cd02387b095931a"></script>
 
 
 </body>

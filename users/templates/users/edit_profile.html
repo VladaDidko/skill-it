@@ -6,12 +6,12 @@
     <div class = "col-md-8 col-lg-8">
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <fieldset class="form-group"><h2>Edit profile</h2>
+        <fieldset class="form-group"><h2 style="color:#ffffff;font-family: 'B612 Mono', monospace;">Edit profile</h2>
           {{ u_form|crispy }}
           {{ p_form|crispy }}
         </fieldset>
         <div class="form-group">
-          <button class="btn btn-lg btn-outline-dark" type="submit">Update</button>
+          <button class="btn btn-lg btn-outline btn-light" style="border: 2px solid #DED3F6;" type="submit">Update</button>
         </div>
       </form>
     </div>

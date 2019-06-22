@@ -34,8 +34,8 @@
         </div>
     </article>
 
-    <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-outline-dark" >Read more</button></a>
-    <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-outline-dark" >Comment</button></a>
+    <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-light" >Read more</button></a>
+    <a href="{% url 'post_details' pk=post.pk %}"><button class="btn btn-light" >Comment</button></a>
     
 {% endfor %}
 {% endblock content %}
