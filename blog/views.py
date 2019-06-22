@@ -3,6 +3,7 @@ from .models import Post, Comment, Preferance
 from .forms import CommentForm, PostForm
 from .models import Category
 import random
+from django.db.models import Q
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.views import generic
@@ -31,40 +32,50 @@ def home(request):
     return render(request, 'general/home.html', context)
 
 def post_list(request):
-    context = {
-        'categories': Category.objects.all(),
-        'posts': Post.objects.all()
-    }
+    categories = Category.objects.all()
+    posts = Post.objects.all()
+
     query = request.GET.get("q")
     if query:
-        posts = posts.filter(
-            Q(category__icontains = query) 
-            ).distinct()
-        
+        posts = posts.filter(Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__username__icontains=query)).distinct()
+    context = {
+        'categories': categories,
+        'posts': posts
+    }
     return render(request, 'blog/post_list.html', context)
 
 def post_list_new(request):
-    context = {
-        'categories': Category.objects.all(),
-        'posts': Post.objects.all().order_by('-published_date')
-    }
+    categories = Category.objects.all()
+    posts = Post.objects.all().order_by('-published_date')
+
     query = request.GET.get("q")
     if query:
-        posts = posts.filter(
-            Q(category__icontains = query) 
-            ).distinct()
+        posts = posts.filter(Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__username__icontains=query)).distinct()
+    context = {
+        'categories': categories,
+        'posts': posts
+    }
     return render(request, 'blog/post_list.html', context)
 
 def post_list_popular(request):
-    context = {
-        'categories': Category.objects.all(),
-        'posts': Post.objects.all().order_by('-likes')
-    }
+    categories = Category.objects.all()
+    posts = Post.objects.all().order_by('-likes')
     query = request.GET.get("q")
     if query:
-        posts = posts.filter(
-            Q(category__icontains = query) 
-            ).distinct()
+        posts = posts.filter(Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__username__icontains=query)).distinct()
+    context = {
+        'categories': categories,
+        'posts': posts
+    }
     return render(request, 'blog/post_list.html', context)
 
 
@@ -77,48 +88,48 @@ def post_list_recommended(request):
         skills[i] = skills[i].title()
 
     empty = True
+    recommended = []
 
 
     AllCategories = Category.objects.all();
     for x in AllCategories:
         for y in skills:
             if x.title == y:
-                empty = False    
+                empty = False
+                recommended.append(y)   
 
     if empty == True:
-        context = {
-        'categories': Category.objects.all(),
-        'posts': Post.objects.all()
-        }
+        posts = Post.objects.all()
     else:
-        category = random.randint(0,len(skills)-1)
-        context = {
-        'categories': Category.objects.all(),
-        'posts': Post.objects.all().filter(category__in=Category.objects.filter(title=skills[category]))
-        }
+        category = random.choice(recommended)
+        posts = Post.objects.all().filter(category__in=Category.objects.filter(title=category))
 
     query = request.GET.get("q")
     if query:
-        posts = posts.filter(
-            Q(category__icontains = query) 
-            ).distinct()
+        posts = posts.filter(Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__username__icontains=query)).distinct()
+    context = {
+        'categories': AllCategories,
+        'posts': posts
+    }
     return render(request, 'blog/post_list.html', context)
 
-def view(request, slug):
-    context = Post.objects.filter(category__in=Category.objects.filter(title=slug))
-    context_dict = {
-         'posts': context
+def category_list(request, slug):
+    posts = Post.objects.filter(category__in=Category.objects.filter(title=slug))
+    
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__username__icontains=query)).distinct()
+    context = {
+         'posts': posts
     }
-    return render(request, 'blog/post_list.html', context_dict)
 
-def sortedByDateCategory(request, slug):
-    context = Post.objects.filter(category__in=Category.objects.filter(title=slug))
-    context_dict = {
-         'posts': context
-    }
-    context_dict.order_by('published_date')
-    return render(request, 'blog/post_list.html', context_dict)
-
+    return render(request, 'blog/post_list.html', context)
 
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)

@@ -5,7 +5,9 @@
 		<a href="{% url 'post_list' %}">All</a>
 		<a href="{% url 'post_list_popular' %}">Popular</a>
 		<a href="{% url 'post_list_new' %}">New</a>
+        {% if user.is_authenticated %}
 		<a href="{% url 'post_list_recommended' %}">Recommended</a>
+        {% endif %}
 	</div> 
 {% for post in posts %}
     <article class="media content-section" style="position: relative;">
