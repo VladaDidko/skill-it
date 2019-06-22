@@ -1,7 +1,7 @@
  {% load static %}
-<!DOCTYPE html>
-<html lang="en" enctype="multipart/form-data">
-<head>
+ <!DOCTYPE html>
+ <html lang="en" enctype="multipart/form-data">
+ <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,24 +18,23 @@
 
   <title>Skill it</title>
 </head>
-<body style="background-color:#DED3F6; background-image: url('general/get.png')>
-  <div container="main-container">
+<body style="background-color:#DED3F6;>
+<div class="main-container">
   <!--Navbar -->
-  <nav class="navbar navbar-expand-xl" style="height: 80px; background-color: #DED3F6; margin-top: 20px;">
-    <a class="navbar-brand" href="{% url 'home' %}" style="font-family: 'Indie Flower', cursive; font-size: 36px;">
-      <img id="logo" src="{% static 'general/logo.png' %}" style="width:80px;"/>
+  <nav class="navbar navbar-expand-xl" style="height: 80px; background-color: #DED3F6;">
+    <a class="navbar-br" href="{% url 'home' %}" style="font-family: 'Indie Flower', cursive; font-size: 36px; margin-top: 20px;">Skill it!
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 25px; margin-left: 20px;">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
             {% for category in categories %}
-              <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
+            <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
             {% endfor %}
           </div>
         </li>
@@ -53,18 +52,18 @@
       </ul>
       <div class="navbar-nav">
         {% if user.is_authenticated %}
-          <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
-              <a class ="dropdown-item" href="{% url 'profile' %}" style="font-family: 'B612 Mono', monospace;">Profile</a>
-              <a class ="dropdown-item" href="{% url 'my_posts' %}" style="font-family: 'B612 Mono', monospace;">My Posts</a>
-              <a class ="dropdown-item" href="{% url 'edit_profile'%}" style="font-family: 'B612 Mono', monospace;">Settings</a>
-            </div>
-          </li>
-          <a class="nav-item nav-link" href="{% url 'logout' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Log out</a>
+        <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
+            <a class ="dropdown-item" href="{% url 'profile' %}" style="font-family: 'B612 Mono', monospace;">Profile</a>
+            <a class ="dropdown-item" href="{% url 'my_posts' %}" style="font-family: 'B612 Mono', monospace;">My Posts</a>
+            <a class ="dropdown-item" href="{% url 'edit_profile'%}" style="font-family: 'B612 Mono', monospace;">Settings</a>
+          </div>
+        </li>
+        <a class="nav-item nav-link" href="{% url 'logout' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Log out</a>
         {% else %}
-          <a class="nav-item nav-link" href="{% url 'login' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px; margin-right: 10px;">Log in</a>
-          <a class="nav-item nav-link" href="{% url 'register' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Sign up</a>
+        <a class="nav-item nav-link" href="{% url 'login' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px; margin-right: 10px;">Log in</a>
+        <a class="nav-item nav-link" href="{% url 'register' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Sign up</a>
         {% endif %}
       </div>
     </div>
@@ -75,20 +74,20 @@
     <div class="row">
       <div class="col-md-12 col-lg-12">
         {% if messages %}
-            {% for message in messages %}
-              <div class = "alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-          {% block content %}
-          {% endblock %}
+        {% for message in messages %}
+        <div class = "alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
 
       </div>
     </div>
   </main>
-<!-- Footer -->
-            
+  <!-- Footer -->
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
