@@ -1,0 +1,15 @@
+{% extends "general/base.html" %}
+{% block content %}
+  {%for follower in followers%}
+      <div class="container-people">
+        <div class="row">
+          <div class="col-md-4 col-lg-4">
+            <img class="rounded-circle" src="{{ follower.following.profile.image.url }}" alt="UserImage" style="width:70px; height: 70px;">
+          </div>
+          <div class = "col-md-3 col-lg-3">
+            <h3 class="profile-title">{{ follower.following.username }}, {{ follower.following.profile.city}} </h3>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+{% endblock content %}
