@@ -37,6 +37,8 @@ urlpatterns = [
     path('my_posts/', user_views.my_posts, name='my_posts'),
     path('my_posts/new', PostCreateView.as_view(), name='post-create'),
     path('people/', main_views.users, name='people'),
+    path('profile/followers', main_views.followers, name='followers'),
+    path('profile/following', main_views.following, name='following'),
     path('', include('blog.urls')),
 ]
 
