@@ -10,8 +10,6 @@ def home(request):
     }
     return render(request, 'general/base.html', context)
 
-
-
 def users(request):
 	context = {
 		'users': User.objects.all(),
@@ -19,3 +17,20 @@ def users(request):
 		'followers': Follower.objects.all(),
 	}
 	return render(request, 'general/people.html', context)
+
+
+def followers(request):
+	current_user = request.user
+	followers = Follower.objects.all().filter(following__in=User.objects.filter(id=current_user.id))
+	context = {
+		'followers': followers
+	}
+	return render(request, 'general/followers.html', context)
+
+def following(request):
+	current_user = request.user
+	followers = Follower.objects.all().filter(follower__in=User.objects.filter(id=current_user.id))
+	context = {
+		'followers': followers
+	}
+	return render(request, 'general/following.html', context)
