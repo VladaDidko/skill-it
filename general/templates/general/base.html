@@ -32,7 +32,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #b87fed;">
             {% for category in categories %}
             <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
             {% endfor %}
@@ -54,7 +54,7 @@
         {% if user.is_authenticated %}
         <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #6610f2;">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #b87fed;">
             <a class ="dropdown-item" href="{% url 'profile' %}" style="font-family: 'B612 Mono', monospace;">Profile</a>
             <a class ="dropdown-item" href="{% url 'my_posts' %}" style="font-family: 'B612 Mono', monospace;">My Posts</a>
             <a class ="dropdown-item" href="{% url 'edit_profile'%}" style="font-family: 'B612 Mono', monospace;">Settings</a>
