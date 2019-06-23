@@ -34,3 +34,15 @@ def following(request):
 		'followers': followers
 	}
 	return render(request, 'general/following.html', context)
+
+def update(request, pk):
+	following = User.objects.get(id=pk)
+	follower = Follower(follower=request.user, following=following)
+	follower.save()
+
+	context = {
+		'users': User.objects.all(),
+		'profiles': Profile.objects.all(),
+		'followers': Follower.objects.all(),
+	}
+	return render(request, 'general/people.html', context)

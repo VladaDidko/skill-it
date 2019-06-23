@@ -17,13 +17,19 @@
       <p style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3) font-size: 16px; font-family: URW Chancery L, cursive;color: #fff;" class="description" class = "text-secondary">Date of birth: {{ user.profile.date_birth|date:"F d, Y"}} </p>
       <hr style="border: 0; height: 1px;
        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
-      <p><input type="button" class='btn btn-md btn-light' href="" id="follow" value="Follow" onclick="followReaction()">
+      <form method="post">
+      <p><input type="button" name = "sbr" value="Follow" class='btn btn-md btn-light' id="subscribeButton" onclick="location.href='{% url 'update_status' pk=user.id %}'"></p>
+      </form>
+       {% for follower in followers %}
+       {% if follower.follower.id == request.user.id and follower.following.id == user.id %}
+       <script>
+            function subscribeBtn(){
+            var subscribeButton = document.getElementById("subscribeButton");
+            subscribeButton.value = "Unfollow";
+            }
+            subscribeBtn();
+        </script>
+       {% endif %}
+       {% endfor %}
     </div>
-    <script>
-      function followReaction() {
-        var elem = document.getElementById('follow');
-        if (elem.value == "Follow") elem.value = "Unfollow";
-        else elem.value = "Follow";
-      }
-    </script>
 {% endblock content %}

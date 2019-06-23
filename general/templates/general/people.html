@@ -12,8 +12,8 @@
           </div>
           <div class = "col-md-5 col-lg-5">
             <form name="passdata" action="." method="post">
-            <input type='button' class='btn btn-lg btn-light following' value='Follow' onClick="location.href='{% url 'post_list'%}'">
-            <input type='button' class='btn btn-lg btn-light' value='Details' onClick="location.href='{% url 'user_details' pk=user.id %}'">
+            <input type='button' class='btn btn-lg btn-light following' value="Follow" onclick="location.href='{% url 'update' pk=user.id%}'">
+            <input type='button' class='btn btn-lg btn-light' value='Details' onclick="location.href='{% url 'user_details' pk=user.id %}'">
             </form>
           </div>
         </div>

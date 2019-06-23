@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from users.models import Follower
 
 # Create your views here.
 def register(request):
@@ -31,9 +32,29 @@ def profile(request):
 def user_details(request, pk):
     user = User.objects.all().get(id=pk)
     context = {
-        'user': user
+        'user': user,
+        'followers': Follower.objects.all()
     }
     return render(request, 'users/user_details.html', context)
+
+@login_required
+def update_status(request, pk):
+  action = request.POST.get('sbr', '')
+
+  if action == 'Follow':
+    following = User.objects.get(id=pk)
+    follower = Follower(follower=request.user, following=following)
+    follower.save()
+  else:
+    following = User.objects.get(id=pk)
+    Follower.objects.filter(follower=request.user, following=following).delete()
+
+  user = User.objects.all().get(id=pk)
+  context = {
+        'user': user,
+        'followers': Follower.objects.all()
+    }
+  return render(request, 'users/user_details.html', context)
 
 
 @login_required
