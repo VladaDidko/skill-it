@@ -1,0 +1,29 @@
+{% extends "general/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="card" style=" background: transparent;align-content: center;
+ text-align: center;padding-top: 20px;">
+      <img class = "rounded-circle" src="{{ user.profile.image.url }}" alt="UserImage" style=" width:200px; height: 200px; display: block; 
+      margin: 0 auto; margin-bottom: 20px;">
+      <h1 class="username" style="text-transform: uppercase; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);font-family: URW Chancery L, cursive;
+      color: #fff;">{{ user.username }}</h1>
+      <p style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3) font-size: 16px;font-family: URW Chancery L, cursive;
+      color: #fff;" class="description">{{ user.profile.description }}</p>
+      <p style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3) font-size: 16px;
+      font-family: URW Chancery L, cursive; color: #fff;" class="description">{{ user.profile.city }}</p><hr style="border: 0; height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
+      <p style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3) font-size: 16px;
+      font-family: URW Chancery L, cursive; color: #fff;" class="description" class = "text-secondary">Skills: {{ user.profile.skills }}</p>
+      <p style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3) font-size: 16px; font-family: URW Chancery L, cursive;color: #fff;" class="description" class = "text-secondary">Date of birth: {{ user.profile.date_birth|date:"F d, Y"}} </p>
+      <hr style="border: 0; height: 1px;
+       background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
+      <p><input type="button" class='btn btn-md btn-light' href="" id="follow" value="Follow" onclick="followReaction()">
+    </div>
+    <script>
+      function followReaction() {
+        var elem = document.getElementById('follow');
+        if (elem.value == "Follow") elem.value = "Unfollow";
+        else elem.value = "Follow";
+      }
+    </script>
+{% endblock content %}

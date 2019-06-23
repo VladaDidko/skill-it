@@ -1,40 +1,38 @@
 {% extends "general/base.html" %}
 {% block content %}
-  <head>
-   <script>
-      function followReaction() {
-        var elem = document.getElementById('follow');
-        if (elem.value == "Follow") elem.value = "Unfollow";
-        else elem.value = "Follow";
-      }
-    </script>
-  </head>
   {%for user in users%}
     {% if request.user != user %}
       <div class="container-people">
         <div class="row">
           <div class="col-md-4 col-lg-4">
-            <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="UserImage" style="width:70px; height: 70px;">
+            <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="UserImage" style="width:70px; height: 70px; margin-left: 5px;">
           </div>
           <div class = "col-md-3 col-lg-3">
-            <h3 class="profile-title">{{ user.username }}, {{ user.profile.city}} </h3>
+            <h3 class="profile-title" style="margin-top: 10px;">{{ user.username }}, {{ user.profile.city}} </h3>
           </div>
           <div class = "col-md-5 col-lg-5">
-            {% for follower in followers %}
-            {% if follower.following.id == user.id %}
             <form name="passdata" action="." method="post">
-            <input type='button' class='btn btn-lg btn-dark' id="{{ user.id }}" value='Unfollow'
-            onClick="location.href='{% url 'update' %}'" >
+            <input type='button' class='btn btn-lg btn-light following' value='Follow' onClick="location.href='{% url 'post_list'%}'">
+            <input type='button' class='btn btn-lg btn-light' value='Details' onClick="location.href='{% url 'user_details' pk=user.id %}'">
             </form>
-            {% endif %}
-            <form name="passdata" action="." method="post">
-            <input type='button' class='btn btn-lg btn-dark' id="{{ user.id }}" value='Unfollow'
-            onClick="location.href='{% url 'update' %}'" >
-            </form>
-            {% endfor %}
           </div>
         </div>
       </div>
     {% endif %}
   {% endfor %}
+  <script>
+      function followDraw() {
+        var users = document.getElementsByClassName('following');
+        for (var i = 0; i < users.length; i++){
+          users[i].id = following${i};
+          users[i].setAttribute("onclick",followReaction('${i}'));
+        }
+      }
+      function followReaction(id){
+        var elem = document.getElementById(following${id});
+        if (elem.value == "Follow") elem.value = "Unfollow";
+        else elem.value = "Follow";
+      }
+      followDraw();
+    </script>
 {% endblock content %}
