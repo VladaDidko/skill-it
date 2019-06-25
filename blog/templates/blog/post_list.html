@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
 	<div class="volumes">
-		<button class="btn" href="{% url 'post_list' %}" style="width:150px; background-color:#9370DB;"><a style="position: center;">All</a></button>
-		<button class="btn" href="{% url 'post_list_popular' %}" style="width:150px; background-color:#9370DB;"><a>Popular</a></button>
-        <button class="btn" href="{% url 'post_list_new' %}" style="width:150px; background-color:#9370DB;"><a>New</a></button>
+		<a href="{% url 'post_list' %}">All</a>
+		<a href="{% url 'post_list_popular' %}">Popular</a>
+        <a href="{% url 'post_list_new' %}">New</a>
         {% if user.is_authenticated %}
-            <button class="btn" href="{% url 'post_list_recommended' %}" style="width:150px; background-color:#9370DB;"><a>Recommended</a></button>
+            <a href="{% url 'post_list_recommended' %}">Recommended</a>
         {% endif %}
 	</div> 
 {% for post in posts %}

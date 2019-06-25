@@ -35,7 +35,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #9370DB;">
             {% for category in categories %}
-            <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
+              <a class ="dropdown-item" href="{% url 'category_list' slug=category.title %}" value={{ category.id }}>{{ category.title }}</a>
             {% endfor %}
           </div>
         </li>

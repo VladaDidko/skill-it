@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Preferance
 from .forms import CommentForm, PostForm
-from .models import Category
+from .models import Category, Subcategory
 import random
 from django.db.models import Q
 from users.models import Profile
@@ -21,10 +21,19 @@ class CategoryView(generic.ListView):
 
    
     def get_queryset(self):
-        return Category.objects.all()
+        return Category.objects.filter(category=category)
 
+class SubcategoryView(generic.ListView):
+    model = Subcategory
+    template_name="general/base.html"
+    context_object_name = 'all_subcategories'
+    category = Category.objects.all()
+
+    def get_queryset(self):
+        return Subcategory.objects.all()
 
 def home(request):
+    
     context = {
     'categories': Category.objects.all(),
     }
@@ -46,6 +55,8 @@ def post_list(request):
         'posts': posts
     }
     return render(request, 'blog/post_list.html', context)
+
+
 
 def post_list_new(request):
     categories = Category.objects.all()
@@ -130,6 +141,8 @@ def category_list(request, slug):
     }
 
     return render(request, 'blog/post_list.html', context)
+
+
 
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)

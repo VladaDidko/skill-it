@@ -16,8 +16,8 @@
           <div class = "col-md-5 col-lg-5">
             <form name="passdata" action="." method="post"  style="float: right; margin-top: 10px; margin-right: 10px;">
             <form name="passdata" action="." method="post" style="float: right; margin-top: 8px; margin-right: 10px;">
-            <input type='button' class='btn btn-lg following' value="Follow" onclick="location.href='{% url 'update' pk=user.id%}'" style="background-color: #9370DB; color:white;">
-            <input type='button' class='btn btn-lg ' value='Details' onclick="location.href='{% url 'user_details' pk=user.id %}'" style="background-color: #9370DB; color:white;">
+            <input type='button' class='btn btn-lg-light following' value="Follow" onclick="location.href='{% url 'update' pk=user.id%}'">
+            <input type='button' class='btn btn-lg-light follower' value='Details' onclick="location.href='{% url 'user_details' pk=user.id %}'">
             </form>
           </div>
         </div>

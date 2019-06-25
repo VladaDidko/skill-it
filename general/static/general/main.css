@@ -17,3 +17,7 @@ body, .main-container {
 .main-header {
     text-align: center;
 }
+
+.following, .follower :hover{
+  font-weight: bold;
+}

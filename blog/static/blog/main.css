@@ -85,14 +85,16 @@ a.article-title:hover {
   width: 75%;
 }
 
-
-
 .volumes a {
-  color: white;
   font-size: 22px;
+  margin-right: 30px;
 }
 
 .volumes a:hover{
   color: #5B42FF;
+  font-weight: bold;
+}
+
+#add_comment :hover{
   font-weight: bold;
 }
