@@ -13,6 +13,13 @@ class Category(models.Model):
 	def __str__(self):
 		return  self.title
 
+class Subcategory(models.Model):
+	title = models.CharField(max_length=200)
+	category=models.ForeignKey(Category, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return  self.title
+
 class Post(models.Model):
 	title = models.CharField(max_length=200)
 	text = models.TextField(blank=True)
