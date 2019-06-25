@@ -1,14 +1,18 @@
 from django.shortcuts import render
-from blog.models import Category
+from blog.models import Category, Post
 from django.http import HttpResponse
 from users.models import Profile, Follower
 from django.contrib.auth.models import User
 
 def home(request):
-    context = {
-        'categories': Category.objects.all()
-    }
-    return render(request, 'general/base.html', context)
+	current_user = request.user
+	followers = Follower.objects.all().filter(follower__in=User.objects.filter(id=current_user.id))
+	context = {
+	    'categories': Category.objects.all(),
+        'posts': Post.objects.all(),
+        'followers': followers
+	}
+	return render(request, 'general/home.html', context)
 
 def users(request):
 	context = {

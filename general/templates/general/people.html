@@ -11,7 +11,7 @@
             <h3 class="profile-title" style="margin-top: 10px;">{{ user.username }}, {{ user.profile.city}} </h3>
           </div>
           <div class = "col-md-5 col-lg-5">
-            <form name="passdata" action="." method="post">
+            <form name="passdata" action="." method="post"  style="float: right; margin-top: 10px; margin-right: 10px;">
             <input type='button' class='btn btn-lg btn-light following' value="Follow" onclick="location.href='{% url 'update' pk=user.id%}'">
             <input type='button' class='btn btn-lg btn-light' value='Details' onclick="location.href='{% url 'user_details' pk=user.id %}'">
             </form>
