@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'skill_it.urls'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEMPLATES = [
     {
@@ -140,6 +143,7 @@ STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
     os.path.join(BASE_DIR, 'skill-it/general/'),  # Here you tell django to look for a folder named 'assets'
     os.path.join(BASE_DIR, 'skill-it/users/'),
     os.path.join(BASE_DIR, 'skill-it/blog/'),

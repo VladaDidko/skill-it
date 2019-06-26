@@ -33,6 +33,7 @@ def user_details(request, pk):
     user = User.objects.all().get(id=pk)
     context = {
         'user': user,
+        'posts': Post.objects.all(),
         'followers': Follower.objects.all()
     }
     return render(request, 'users/user_details.html', context)

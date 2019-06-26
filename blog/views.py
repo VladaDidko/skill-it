@@ -142,8 +142,6 @@ def category_list(request, slug):
 
     return render(request, 'blog/post_list.html', context)
 
-
-
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_details.html', {'post': post})
