@@ -33,7 +33,12 @@ class SubcategoryView(generic.ListView):
         return Subcategory.objects.all()
 
 def home(request):
-    
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(Q(title__icontains=query) |
+            Q(text__icontains=query) |
+            Q(category__title__icontains=query) |
+            Q(author__username__icontains=query)).distinct()
     context = {
     'categories': Category.objects.all(),
     }

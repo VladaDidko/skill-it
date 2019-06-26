@@ -9,7 +9,7 @@ def home(request):
 	followers = Follower.objects.all().filter(follower__in=User.objects.filter(id=current_user.id))
 	context = {
 	    'categories': Category.objects.all(),
-        'posts': Post.objects.all(),
+        'posts': Post.objects.all().order_by('-published_date'),
         'followers': followers
 	}
 	return render(request, 'general/home.html', context)
