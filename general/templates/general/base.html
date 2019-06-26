@@ -18,9 +18,7 @@
 
   <title>Skill it</title>
 </head>
-<body style="background-color:#ffffff;>
-<div class="main-container">
-  <!--Navbar -->
+<body style="background-color:#ffffff;">
   <nav class="navbar navbar-expand-xl" style="height: 80px; background-color: #ffffff;">
     <a class="navbar-br" href="{% url 'home' %}" style="font-family: 'Indie Flower', cursive; font-size: 36px; margin-top: 20px;">
       <img src="{% static 'general/1.jpg' %}" style="width:60px; height: 60px;"/>
@@ -49,12 +47,11 @@
             </form>
           </div>
         </li>
-
       </ul>
-      <div class="navbar-nav">
+      <div class="navbar-nav" style="margin-right: 10px;">
         {% if user.is_authenticated %}
-        <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}</a>
+          <li class="nav-item dropdown" style="font-family: 'B612 Mono', monospace; font-size: 28px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.username}}</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #9370DB;">
             <a class ="dropdown-item" href="{% url 'profile' %}" style="font-family: 'B612 Mono', monospace;">Profile</a>
             <a class ="dropdown-item" href="{% url 'my_posts' %}" style="font-family: 'B612 Mono', monospace;">My Posts</a>
@@ -63,30 +60,45 @@
         </li>
         <a class="nav-item nav-link" href="{% url 'logout' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Log out</a>
         {% else %}
-        <a class="nav-item nav-link" href="{% url 'login' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px; margin-right: 10px;">Log in</a>
-        <a class="nav-item nav-link" href="{% url 'register' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Sign up</a>
+          <a class="nav-item nav-link" href="{% url 'login' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px; margin-right: 10px;">Log in</a>
+          <a class="nav-item nav-link" href="{% url 'register' %}" style="font-family: 'B612 Mono', monospace; font-size: 28px;">Sign up</a>
         {% endif %}
       </div>
     </div>
   </nav>
   <!--/.Navbar -->
-
-  <main role="main" class="container-fluid" style="margin-bottom: 50px;">
-    <div class="row">
-      <div class="col-md-12 col-lg-12">
-        {% if messages %}
-        {% for message in messages %}
-        <div class = "alert alert-{{ message.tags }}">
-          {{ message }}
+  
+    <div role="main" class="container-fluid" style="margin-bottom: 50px;">
+      <div class="row">
+        <div class="{% if 'profile' not in request.path and 'user_details' not in request.path %}col-md-9{% else %} col-md-12 {% endif %}">
+          {% if messages %}
+          {% for message in messages %}
+            <div class = "alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+          {% endif %}
+          {% block content %} {% endblock %}
         </div>
-        {% endfor %}
+        {% if 'profile' not in request.path and 'user_details' not in request.path %} 
+        <div class="col-md-3">
+            <div class="content-section" style="position:fixed;margin-right: 30px;">
+              <h3 style="color: #9370DB;position: center">Get this skill</h3>
+              <p class='text-muted'>You can pin the posts you like in this sidebar.
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-light">Pinned Posts</li>
+                  <li class="list-group-item list-group-item-light">Followers</li>
+                  <li class="list-group-item list-group-item-light">Following</li>
+                  <li class="list-group-item list-group-item-light">Comments</li>
+                </ul>
+              </p>
+            </div>
+        </div>
         {% endif %}
-        {% block content %}
-        {% endblock %}
-
       </div>
     </div>
-  </main>
+
+
   <!-- Footer -->
 
   <!-- Optional JavaScript -->

@@ -1,4 +1,4 @@
-body, .main-container {
+body {
 	width:100%;
 	height: 100%;
 }
@@ -8,10 +8,11 @@ body, .main-container {
   float:left; 
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 70%;
+  width: 80%;
   margin-bottom: 10px;
   margin-top: 10px;
-  background-color: #a478f5;
+  background-color: #9370DB;
+  opacity: 0.8;
 }
 
 .main-header {

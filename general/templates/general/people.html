@@ -2,10 +2,10 @@
 {% block content %}
   {%for user in users%}
     {% if request.user != user %}
-      <div class="container-people">
+      <div class="container-people" style="background-color: #9370DB; opacity: 0.8;width: 80%;">
         <div class="row">
           <div class="col-md-4 col-lg-4">
-            <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="UserImage" style="width:60px; height: 60px; margin-left: 10px;">
+            <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="UserImage" style="width:60px; height: 50px; margin-left: 10px;">
           </div>
           <div class = "col-md-3 col-lg-3">
             <h3 class="profile-title" style="margin-top: 10px;">{{ user.username }}</h3>
@@ -16,7 +16,7 @@
           <div class = "col-md-5 col-lg-5">
             <form name="passdata" action="." method="post"  style="float: right; margin-top: 10px; margin-right: 10px;">
             <form name="passdata" action="." method="post" style="float: right; margin-top: 8px; margin-right: 10px;">
-            <input type='button' class='btn btn-lg-light following' value="Follow" onclick="location.href='{% url 'update' pk=user.id%}'">
+            <!-- <input type='button' class='btn btn-lg-light following' value="Follow" onclick="location.href='{% url 'update' pk=user.id%}'"> -->
             <input type='button' class='btn btn-lg-light follower' value='Details' onclick="location.href='{% url 'user_details' pk=user.id %}'">
             </form>
           </div>

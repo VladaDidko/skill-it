@@ -1,62 +1,56 @@
 {% extends 'general/base.html' %}
 {% load static %}
 {% block content %}
-<div class = "container">
-    <div class = "row">
-        <div class = "col-md-9 col-lg-9">
-            <div class="post-container">
-                {% if post.published_date %}
-                    <small class="text-muted">{{post.published_date}}</small>
-                {% endif %}
-                <h2>{{ post.title }}</h2>
-                {% if post.image %}
-                    <img src="{{ post.image.url }}"  alt="image post" style="max-width:600px;"/>
-                {% endif %}
-                {% if p.videofile %}
-                    <video width="260" height="150" controls src="{{ p.videofile.url }}">
-                {% endif %}
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-            <hr>
-            <div class="buttons-group" style="right:0;float: right;">
-                <a href="#" onClick="document.getElementById('likebutton').submit()"><img src="{% static 'blog/like.png' %}" style="width: 36px;height: 36px;"/></a>{{ post.likes }}   |   <a href="#" onClick="document.getElementById('dislikebutton').submit()">
-                <img src="{% static 'blog/dislike2.png' %}" style="width: 35px;height: 35px;"/></a> {{post.dislikes}}
-                <form id="likebutton" method="POST" action="{% url 'postpreference' pk=post.pk id=1 %}">
-                    {% csrf_token %}
-                    <input type="hidden">
-                </form>
-                <form id="dislikebutton" method="POST" action="{% url 'postpreference' pk=post.pk id=2 %}">
-                    {% csrf_token %}
-                    <input type="hidden">
-                </form>
-            </div>
 
-            <a href="{% url 'add_comment_to_post' pk=post.pk %}" id="add_comment"><button class="btn btn-outline btn-lg" style="background-color:#9370DB;color:white;">Add comment</button></a>
-            {% for comment in post.comments.all %}
-            {% if user.is_authenticated or comment.approved_comment %}
-            <div class="comment" style="margin-top:15px;">
-                <div class="date">
-                    
-                    {% if not comment.approved_comment %}
-                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
-                            <span class="glyphicon glyphicon-remove"></span></a>
-                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
-                            <span class="glyphicon glyphicon-ok"></span></a>
-                    {% endif %}
-                </div>
-                <div class = "comment-section">
-                    <h6>{{ comment.author }}</h6>
-                    <p class="text-muted">{{ comment.date_commented }}</p>
-                    <div class="comment" style="border-left: 4px solid black; background-color: #E6E6FA;">
-                        <p>{{ comment.text|linebreaks }}</p>
-                    </div>
-                </div>
+<div class="post-container">
+    {% if post.published_date %}
+        <small class="text-muted">{{post.published_date}}</small>
+    {% endif %}
+    <h2>{{ post.title }}</h2>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="image post" style="max-width:600px;"/>
+    {% endif %}
+    {% if p.videofile %}
+        <video width="260" height="150" controls src="{{ p.videofile.url }}">
+    {% endif %}
+        <p>{{ post.text|linebreaksbr }}</p>
+</div>
+<hr>
+<div class="buttons-group" style="right:0;float: right;">
+    <a href="#" onClick="document.getElementById('likebutton').submit()"><img src="{% static 'blog/like.png' %}" style="width: 36px;height: 36px;"/></a>{{ post.likes }}   |   <a href="#" onClick="document.getElementById('dislikebutton').submit()">
+        <img src="{% static 'blog/dislike2.png' %}" style="width: 35px;height: 35px;"/></a> {{post.dislikes}}
+        <form id="likebutton" method="POST" action="{% url 'postpreference' pk=post.pk id=1 %}">
+            {% csrf_token %}
+            <input type="hidden">
+        </form>
+        <form id="dislikebutton" method="POST" action="{% url 'postpreference' pk=post.pk id=2 %}">
+            {% csrf_token %}
+            <input type="hidden">
+        </form>
+</div>
+
+<a href="{% url 'add_comment_to_post' pk=post.pk %}" id="add_comment"><button class="btn btn-outline btn-lg" style="background-color:#9370DB;color:white;">Add comment</button></a>
+{% for comment in post.comments.all %}
+{% if user.is_authenticated or comment.approved_comment %}
+    <div class="comment" style="margin-top:15px;">
+        <div class="date">
+        {% if not comment.approved_comment %}
+            <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+            <span class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+            <span class="glyphicon glyphicon-ok"></span></a>
+        {% endif %}
+        </div>
+        <div class = "comment-section">
+            <h6>{{ comment.author }}</h6>
+            <p class="text-muted">{{ comment.date_commented }}</p>
+            <div class="comment" style="border-left: 4px solid black; background-color: #E6E6FA;">
+                <p>{{ comment.text|linebreaks }}</p>
             </div>
-            {% endif %}
-            {% empty %}
-                <p>No comments yet</p>
         </div>
     </div>
-</div>
+        {% endif %}
+        {% empty %}
+            <p>No comments yet</p>
 {% endfor %}
 {% endblock %}
