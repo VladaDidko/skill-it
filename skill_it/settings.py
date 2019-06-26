@@ -143,7 +143,7 @@ STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'skill-it/general/'),  # Here you tell django to look for a folder named 'assets'
     os.path.join(BASE_DIR, 'skill-it/users/'),
     os.path.join(BASE_DIR, 'skill-it/blog/'),

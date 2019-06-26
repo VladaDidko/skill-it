@@ -33,7 +33,8 @@
             {% endif %}
             </div>
         </div>
-
     </article>
+    <a href="{% url 'post-update' pk=p.pk %}"><button class="btn" style="background-color:  #9370DB;color:white;">Edit</button></a>
+    <a href="{% url 'del_post' pk=p.pk %}"><button class="btn" style="background-color:  #9370DB;color:white;" >Delete</button></a>
 {% endfor %}
 {% endblock content %}

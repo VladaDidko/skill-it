@@ -5,10 +5,11 @@ from users.models import User
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from users.models import Follower
+from blog.forms import PostForm
 
 # Create your views here.
 def register(request):
@@ -92,8 +93,27 @@ def my_posts(request):
     }
     return render(request, 'users/my_posts.html', context)
 
+@login_required
+def del_post(request, pk):
+    Post.objects.get(pk=pk).delete()
+    myposts = Post.objects.filter(author=request.user)
+    context = {
+        'myposts': myposts
+    }
+    return render(request, 'users/my_posts.html', context)
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'text', 'category', 'image', 'videofile']
+
+    def get_success_url(self):
+            return reverse('mypost_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ['title', 'text', 'category', 'image', 'videofile']
 
