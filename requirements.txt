@@ -24,7 +24,7 @@ face-recognition-models==0.3.0
 Faker==0.9.1
 Flask==1.0.3
 graphviz==0.10.1
-httplib2==0.13.0
+httplib2==0.18.0
 idna==2.8
 importlib-metadata==0.17
 ipykernel==5.1.0
